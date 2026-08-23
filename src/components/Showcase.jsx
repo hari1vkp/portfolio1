@@ -13,26 +13,27 @@ function TileLabel({ index }) {
 
 function TileTitle({ children }) {
   return (
-    <h3 className="text-[clamp(1.75rem,3.2vw,3.5rem)] font-black uppercase leading-[0.9] tracking-display">
+    <h3 className="text-[clamp(1.5rem,3.4vw,3.5rem)] font-black uppercase leading-[0.9] tracking-display">
       {children}
     </h3>
   )
 }
 
+/*
+ * Geometry is expressed as Tailwind classes (margins shift the
+ * flex-centered tile; framer-motion owns the transform).
+ */
 const slides = [
   {
     id: 'shift',
     scale: 4,
-    top: '-24vh',
-    left: '-18vw',
-    width: 'min(72vw, 34vw)',
-    height: '42vh',
-    className: 'swiss-grid-pattern bg-white',
+    className:
+      'swiss-grid-pattern bg-white w-[78vw] h-[44vh] -mt-[22vh] -ml-[16vw] lg:w-[36vw] lg:h-[46vh]',
     node: (
       <>
         <TileLabel index={1} />
         <div
-          className="absolute bottom-6 right-6 aspect-square w-[28%] bg-swiss-fg"
+          className="absolute bottom-5 right-5 aspect-square w-[26%] bg-swiss-fg sm:bottom-8 sm:right-8"
           aria-hidden="true"
         />
         <TileTitle>Shift AI</TileTitle>
@@ -42,16 +43,13 @@ const slides = [
   {
     id: 'garage',
     scale: 5,
-    top: '22vh',
-    left: '-22vw',
-    width: 'min(76vw, 32vw)',
-    height: '40vh',
-    className: 'swiss-dots bg-swiss-muted',
+    className:
+      'swiss-dots bg-swiss-muted w-[74vw] h-[40vh] mt-[20vh] -ml-[20vw] lg:w-[32vw] lg:h-[42vh]',
     node: (
       <>
         <TileLabel index={2} />
         <div
-          className="absolute bottom-6 right-6 aspect-square w-[28%] rounded-full border-4 border-swiss-fg"
+          className="absolute bottom-5 right-5 aspect-square w-[26%] rounded-full border-4 border-swiss-fg sm:bottom-8 sm:right-8"
           aria-hidden="true"
         />
         <TileTitle>Cloud Garage</TileTitle>
@@ -61,16 +59,13 @@ const slides = [
   {
     id: 'stag',
     scale: 6,
-    top: '-26vh',
-    left: '16vw',
-    width: 'min(76vw, 34vw)',
-    height: '44vh',
-    className: 'swiss-diagonal bg-white',
+    className:
+      'swiss-diagonal bg-white w-[80vw] h-[46vh] -mt-[24vh] ml-[14vw] lg:w-[38vw] lg:h-[48vh]',
     node: (
       <>
         <TileLabel index={3} />
         <div
-          className="absolute bottom-6 right-6 h-1.5 w-[40%] bg-swiss-fg"
+          className="absolute bottom-6 right-5 h-1.5 w-[40%] bg-swiss-fg sm:right-8"
           aria-hidden="true"
         />
         <TileTitle>StagKitchen</TileTitle>
@@ -80,11 +75,8 @@ const slides = [
   {
     id: 'robo',
     scale: 8,
-    top: '20vh',
-    left: '18vw',
-    width: 'min(70vw, 30vw)',
-    height: '38vh',
-    className: 'bg-swiss-accent text-white',
+    className:
+      'bg-swiss-accent text-white w-[70vw] h-[38vh] mt-[18vh] ml-[16vw] lg:w-[30vw] lg:h-[40vh]',
     node: (
       <>
         <span className="text-xs font-bold uppercase tracking-label">
@@ -97,11 +89,8 @@ const slides = [
   {
     id: 'hire',
     scale: 9,
-    top: '-4vh',
-    left: '0vw',
-    width: 'min(80vw, 32vw)',
-    height: '36vh',
-    className: 'bg-swiss-fg text-white',
+    className:
+      'bg-swiss-fg text-white w-[84vw] h-[40vh] -mt-[4vh] lg:w-[34vw] lg:h-[38vh]',
     node: (
       <>
         <span className="text-xs font-bold uppercase tracking-label">

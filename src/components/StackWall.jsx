@@ -41,22 +41,26 @@ const VARIANTS = [
 function Column({ progress, speed, top, items, reducedMotion, dimension, columnIndex }) {
   const y = useTransform(progress, [0, 1], [0, dimension.height * speed])
 
+  // Mobile: 2 wide columns; lg+: all four
+  const visibility = columnIndex < 2 || 'hidden lg:flex'
+  const width = columnIndex < 2 ? 'w-1/2 lg:w-1/4' : 'lg:w-1/4'
+
   return (
     <motion.div
       style={reducedMotion ? { marginTop: top } : { y, marginTop: top }}
-      className="flex w-1/4 shrink-0 flex-col gap-3 px-1.5 will-change-transform"
+      className={`${visibility} ${width} shrink-0 flex-col gap-3 px-1.5 will-change-transform`}
     >
       {items.map((item, i) => (
         <div
           key={item}
-          className={`relative flex h-[24vh] items-center justify-center border-4 border-swiss-fg p-3 text-center ${
+          className={`relative flex h-[22vh] items-center justify-center border-4 border-swiss-fg p-3 text-center ${
             VARIANTS[(i + columnIndex) % VARIANTS.length]
           }`}
         >
           <span className="absolute left-2 top-2 text-[10px] font-bold text-swiss-accent">
             {String(i + 1).padStart(2, '0')}
           </span>
-          <span className="text-base font-black uppercase leading-tight tracking-display sm:text-xl lg:text-2xl">
+          <span className="text-lg font-black uppercase leading-tight tracking-display sm:text-xl lg:text-2xl">
             {item}
           </span>
         </div>

@@ -30,13 +30,13 @@ export default function Footer() {
           <div className="mt-14 flex flex-col items-start gap-5">
             <a
               href="mailto:blackarctech@gmail.com"
-              className="swiss-focus group inline-flex h-16 items-center gap-4 border-4 border-swiss-fg bg-swiss-accent px-8 text-sm font-bold uppercase tracking-label text-white transition-colors duration-200 ease-out hover:bg-swiss-fg"
+              className="swiss-focus group inline-flex h-16 max-w-full items-center gap-3 border-4 border-swiss-fg bg-swiss-accent px-4 text-xs font-bold uppercase tracking-wide text-white transition-colors duration-200 ease-out hover:bg-swiss-fg sm:gap-4 sm:px-8 sm:text-sm sm:tracking-label"
             >
-              blackarctech@gmail.com
+              <span className="break-all">blackarctech@gmail.com</span>
               <ArrowRight
                 size={20}
                 strokeWidth={2.5}
-                className="transition-transform duration-200 ease-out group-hover:translate-x-1"
+                className="shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-1"
               />
             </a>
             <a
