@@ -13,14 +13,14 @@ function NavLink({ label, href }) {
   return (
     <a
       href={href}
-      className="swiss-focus group relative block overflow-hidden px-1 py-3 text-sm font-bold uppercase tracking-label"
+      className="swiss-focus group relative block overflow-hidden px-1 text-sm font-bold uppercase tracking-label"
     >
-      <span className="block transition-transform duration-200 ease-out group-hover:-translate-y-full">
+      <span className="block py-3 transition-transform duration-200 ease-out group-hover:-translate-y-full">
         {label}
       </span>
       <span
         aria-hidden="true"
-        className="absolute inset-0 flex items-center translate-y-full text-swiss-accent transition-transform duration-200 ease-out group-hover:translate-y-0"
+        className="absolute left-0 top-0 block w-full translate-y-full py-3 text-swiss-accent transition-transform duration-200 ease-out group-hover:translate-y-0"
       >
         {label}
       </span>
