@@ -1,4 +1,8 @@
-import { ArrowUp, ArrowRight } from 'lucide-react'
+import { ArrowUp, ArrowRight, Download } from 'lucide-react'
+import Button from './ui/Button.jsx'
+
+const RESUME_URL =
+  'https://drive.google.com/uc?export=download&id=1d8Ij4dUd-Cm7KyDnpVmQDyRgteWiqTPG'
 
 const socials = [
   { label: 'GitHub', href: 'https://github.com/hari1vkp' },
@@ -39,6 +43,22 @@ export default function Footer() {
                 className="shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-1"
               />
             </a>
+            <Button
+              href={RESUME_URL}
+              variant="secondary"
+              target="_blank"
+              rel="noreferrer"
+              download
+              className="w-full sm:w-auto"
+              aria-label="Download résumé PDF (opens Google Drive in a new tab)"
+            >
+              Download résumé
+              <Download
+                size={18}
+                strokeWidth={2.5}
+                className="transition-transform duration-200 ease-out group-hover:translate-y-0.5"
+              />
+            </Button>
             <a
               href="tel:+918667637540"
               className="swiss-focus text-sm font-bold uppercase tracking-label transition-colors duration-150 ease-linear hover:text-swiss-accent"
