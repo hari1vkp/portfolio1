@@ -52,7 +52,7 @@ export default function Footer() {
               className="w-full sm:w-auto"
               aria-label="Download résumé PDF (opens Google Drive in a new tab)"
             >
-              Download résumé
+              Get my CV
               <Download
                 size={18}
                 strokeWidth={2.5}
@@ -98,10 +98,11 @@ export default function Footer() {
           </nav>
           <div>
             <h3 className="mb-4 text-xs font-bold uppercase tracking-label text-black/50">
-              Colophon
+              Good vibes
             </h3>
             <p className="max-w-[16ch] text-xs leading-relaxed uppercase tracking-wide text-black/50">
-              Inter — Grid 24px — Red #FF3000
+              - Keep pushing
+           
             </p>
           </div>
           <div className="flex items-start justify-start sm:justify-end">
@@ -117,7 +118,7 @@ export default function Footer() {
         <div className="border-t-4 border-swiss-fg">
           <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-8 gap-y-2 px-6 py-6 text-xs font-bold uppercase tracking-label text-black/50">
             <p>© 2026 Hariharasudhan R</p>
-            <p>Built on a strict grid — India</p>
+            
           </div>
         </div>
       </div>
