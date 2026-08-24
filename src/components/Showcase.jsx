@@ -27,6 +27,7 @@ const slides = [
   {
     id: 'shift',
     scale: 1.7,
+    mobileScale: 1.25,
     className:
       'swiss-grid-pattern bg-white w-[78vw] h-[42svh] -mt-[20svh] -ml-[14vw] lg:w-[36vw] lg:h-[46svh]',
     node: (
@@ -43,6 +44,7 @@ const slides = [
   {
     id: 'garage',
     scale: 2,
+    mobileScale: 1.05,
     className:
       'swiss-dots bg-swiss-muted w-[74vw] h-[38svh] mt-[18svh] -ml-[18vw] lg:w-[32vw] lg:h-[42svh]',
     node: (
@@ -59,6 +61,7 @@ const slides = [
   {
     id: 'stag',
     scale: 2.35,
+    mobileScale: 1.05,
     className:
       'swiss-diagonal bg-white w-[80vw] h-[44svh] -mt-[22svh] ml-[12vw] lg:w-[38vw] lg:h-[48svh]',
     node: (
@@ -75,6 +78,7 @@ const slides = [
   {
     id: 'robo',
     scale: 2.8,
+    mobileScale: 1.5,
     className:
       'bg-swiss-accent text-white w-[70vw] h-[36svh] mt-[16svh] ml-[14vw] lg:w-[30vw] lg:h-[40svh]',
     node: (
@@ -89,8 +93,9 @@ const slides = [
   {
     id: 'hire',
     scale: 3.2,
+    mobileScale: 2.0,
     className:
-      'bg-swiss-fg text-white w-[84vw] h-[38svh] -mt-[4svh] lg:w-[34vw] lg:h-[38svh]',
+      'bg-swiss-fg text-white w-[84vw] h-[38svh] lg:-mt-[4svh] lg:w-[34vw] lg:h-[38svh]',
     node: (
       <>
         <span className="text-xs font-bold uppercase tracking-label">
@@ -115,7 +120,7 @@ export default function Showcase() {
       </p>
 
       {/* Decorative zoom experience; text content is duplicated elsewhere on the page */}
-      <div aria-hidden="true" className="border-t-4 border-swiss-fg">
+      <div aria-hidden="true" className="overflow-x-clip border-t-4 border-swiss-fg">
         <ZoomParallax slides={slides} />
       </div>
     </section>
