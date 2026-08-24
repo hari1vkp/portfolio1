@@ -26,7 +26,7 @@ function TileTitle({ children }) {
 const slides = [
   {
     id: 'shift',
-    scale: 4,
+    scale: 1.7,
     className:
       'swiss-grid-pattern bg-white w-[78vw] h-[44vh] -mt-[22vh] -ml-[16vw] lg:w-[36vw] lg:h-[46vh]',
     node: (
@@ -42,7 +42,7 @@ const slides = [
   },
   {
     id: 'garage',
-    scale: 5,
+    scale: 2,
     className:
       'swiss-dots bg-swiss-muted w-[74vw] h-[40vh] mt-[20vh] -ml-[20vw] lg:w-[32vw] lg:h-[42vh]',
     node: (
@@ -58,7 +58,7 @@ const slides = [
   },
   {
     id: 'stag',
-    scale: 6,
+    scale: 2.35,
     className:
       'swiss-diagonal bg-white w-[80vw] h-[46vh] -mt-[24vh] ml-[14vw] lg:w-[38vw] lg:h-[48vh]',
     node: (
@@ -74,7 +74,7 @@ const slides = [
   },
   {
     id: 'robo',
-    scale: 8,
+    scale: 2.8,
     className:
       'bg-swiss-accent text-white w-[70vw] h-[38vh] mt-[18vh] ml-[16vw] lg:w-[30vw] lg:h-[40vh]',
     node: (
@@ -88,7 +88,7 @@ const slides = [
   },
   {
     id: 'hire',
-    scale: 9,
+    scale: 3.2,
     className:
       'bg-swiss-fg text-white w-[84vw] h-[40vh] -mt-[4vh] lg:w-[34vw] lg:h-[38vh]',
     node: (

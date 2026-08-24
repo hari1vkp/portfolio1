@@ -39,7 +39,7 @@ export default function ZoomParallax({ slides }) {
   })
 
   return (
-    <div ref={container} className="relative h-[300vh]">
+    <div ref={container} className="relative h-[250vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         {slides.map((slide) => (
           <Layer
