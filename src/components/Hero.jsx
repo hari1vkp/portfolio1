@@ -33,18 +33,18 @@ export default function Hero() {
       <div className="mx-auto max-w-[1400px] px-6 pt-[120px] pb-16 lg:pt-[160px] lg:pb-24">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-10">
           {/* 7 : 5 asymmetry — type dominates, art supports */}
-          <div className="lg:col-span-7">
+          <div className="relative z-10 lg:col-span-7">
             <p className="mb-8 flex items-center gap-3 text-xs font-bold uppercase tracking-label sm:text-sm">
               <span className="size-3 bg-swiss-accent" aria-hidden="true" />
               Hariharasudhan R — Portfolio 2026 · India
             </p>
 
-            <h1 className="text-[clamp(4rem,13vw,10rem)] font-black uppercase leading-[0.88] tracking-display">
+            <h1 className="text-[clamp(3.5rem,11vw,7.5rem)] font-black uppercase leading-[0.92] tracking-display">
               Python
               <br />
               <span
                 className="text-transparent"
-                style={{ WebkitTextStroke: '3px #000' }}
+                style={{ WebkitTextStroke: '2.5px #FC3000' }}
               >
                 Developer
               </span>

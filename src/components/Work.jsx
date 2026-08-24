@@ -1,71 +1,182 @@
+import { useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import SectionHeader from './ui/SectionHeader.jsx'
 
 const projects = [
   {
+    id: 'shift-ai',
     title: 'Shift AI',
-    meta: 'Project Contributor',
-    tags: ['Python', 'FastAPI', 'React', 'PostgreSQL', 'JWT'],
-    desc: 'A workforce shift scheduling application with REST APIs for users, shifts, and schedules — secured by JWT auth and role-based authorization.',
+    role: 'Backend Developer',
     span: 'lg:col-span-7',
-    texture: false,
+    base: 'bg-white',
+    tags: ['Python', 'FastAPI', 'React', 'PostgreSQL', 'JWT'],
+    summary:
+      'AI-powered workforce scheduling platform — REST APIs for employees, shifts, leave, and automated schedule generation.',
+    description:
+      'Shift AI simplifies workforce scheduling end to end. Administrators manage employees, create shifts, handle leave and availability, and generate efficient schedules from employee preferences and organizational requirements. A centralized dashboard lets managers run assignments while employees track their own schedules, availability, and leave — reducing manual work and avoiding conflicts.',
+    points: [
+      'REST APIs with Python & FastAPI',
+      'Employee & shift management logic',
+      'Database models + CRUD operations',
+      'Authentication & authorization',
+      'Shift creation, assignment & availability APIs',
+      'Validation, error handling & API responses',
+      'Backend integration with React frontend',
+      'API testing + Git/GitHub workflow',
+    ],
   },
   {
+    id: 'stagkitchen',
     title: 'StagKitchen',
-    meta: 'Project Contributor',
-    tags: ['Python', 'FastAPI', 'SQLAlchemy', 'Pydantic', 'AI'],
-    desc: 'An AI-powered kitchen assistant generating recipes and meal plans from ingredients, dietary preferences, and shopping lists.',
+    role: 'Backend Developer',
     span: 'lg:col-span-5',
-    texture: true,
+    base: 'swiss-dots bg-swiss-muted',
+    tags: ['Python', 'FastAPI', 'AI/GenAI', 'Next.js', 'SQL'],
+    summary:
+      'AI kitchen companion — personalized recipes, meal planning, calorie tracking, and smart shopping lists.',
+    description:
+      'StagKitchen is an AI-powered kitchen companion built on Python, FastAPI, Next.js, and Tailwind CSS. It generates personalized recipes from available ingredients, dietary preferences, and nutritional needs — then plans meals, calculates calories, identifies ingredients, and builds smart shopping lists, making it easier to decide what to cook and eat healthier.',
+    points: [
+      'Recipe generation & management APIs',
+      'Dietary preference business logic',
+      'Meal planning + calorie calculation APIs',
+      'Ingredient-based recipe generation',
+      'Shopping-list APIs from recipes & plans',
+      'Database models + CRUD operations',
+      'AI service integration with FastAPI',
+      'Next.js frontend integration & debugging',
+    ],
   },
 ]
 
 function ProjectCard({ project, index }) {
+  // Hover, keyboard focus, and touch-tap all route through one flag
+  const [engaged, setEngaged] = useState(false)
+
   return (
-    <a
-      href="#contact"
-      className={`swiss-focus group flex flex-col border-4 border-swiss-fg p-8 transition-colors duration-200 ease-out hover:bg-swiss-fg hover:text-white sm:p-10 ${project.texture ? 'swiss-dots bg-swiss-muted' : 'bg-white'} ${project.span}`}
+    <article
+      tabIndex={0}
+      onMouseEnter={() => setEngaged(true)}
+      onMouseLeave={() => setEngaged(false)}
+      onFocus={() => setEngaged(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setEngaged(false)
+      }}
+      className={`swiss-focus relative flex cursor-default flex-col overflow-hidden border-4 border-swiss-fg p-8 transition-all duration-200 ease-out sm:p-10 ${
+        engaged ? '-translate-y-1 bg-swiss-fg text-white' : project.base
+      } ${project.span}`}
     >
-      <div className="flex items-start justify-between">
-        <span className="text-sm font-bold text-swiss-accent">
-          0{index + 1}
-        </span>
-        <ArrowUpRight
-          size={32}
-          strokeWidth={2.5}
-          className="-rotate-45 transition-transform duration-200 ease-out group-hover:rotate-0"
+      {/* hover parallax layers — each zooms at a different rate */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div
+          className={`swiss-grid-pattern absolute -right-10 -top-10 size-44 border-4 border-swiss-fg/10 transition-transform duration-200 ease-out ${
+            engaged ? 'scale-125' : 'scale-100'
+          }`}
+        />
+        <div
+          className={`absolute -bottom-14 -left-14 size-52 rounded-full border-[6px] border-swiss-accent/25 transition-transform duration-200 ease-out ${
+            engaged ? 'scale-110' : 'scale-100'
+          }`}
+        />
+        <div
+          className={`absolute right-[30%] top-[18%] size-14 bg-swiss-accent/20 transition-transform duration-200 ease-out ${
+            engaged ? 'scale-150' : 'scale-100'
+          }`}
         />
       </div>
 
-      <h3 className="mt-16 text-4xl font-black uppercase tracking-display sm:text-5xl lg:mt-24">
-        {project.title}
-      </h3>
-      <p className="mt-4 max-w-sm text-sm leading-relaxed text-black/60 group-hover:text-white/70">
-        {project.desc}
-      </p>
+      <div
+        className={`relative z-10 flex h-full flex-col transition-transform duration-200 ease-out ${
+          engaged ? 'scale-[1.02]' : 'scale-100'
+        }`}
+      >
+        <div className="flex w-full items-start justify-between">
+          <span className="text-sm font-bold text-swiss-accent">
+            0{index + 1}
+          </span>
+          <ArrowUpRight
+            size={32}
+            strokeWidth={2.5}
+            className={`transition-transform duration-200 ease-out ${
+              engaged ? 'rotate-0' : '-rotate-45'
+            }`}
+          />
+        </div>
 
-      <ul className="mt-auto flex flex-wrap gap-x-6 gap-y-2 pt-10 text-xs font-bold uppercase tracking-label">
-        <li>{project.meta}</li>
-        {project.tags.map((tag) => (
-          <li key={tag} className="text-black/50 group-hover:text-white/50">
-            {tag}
-          </li>
-        ))}
-      </ul>
-    </a>
+        <h3 className="mt-14 text-4xl font-black uppercase tracking-display sm:text-5xl lg:mt-20">
+          {project.title}
+        </h3>
+        <p className="mt-4 max-w-sm text-left text-sm leading-relaxed text-black/60">
+          {project.summary}
+        </p>
+      </div>
+
+      {/* case-study overlay — arrives like the showcase zoom, settling to rest */}
+      <div
+        aria-hidden={!engaged}
+        className={`absolute inset-0 z-20 flex flex-col border-t-0 bg-swiss-fg p-8 text-white transition-all duration-200 ease-out sm:p-10 ${
+          engaged
+            ? 'translate-y-0 scale-100 opacity-100'
+            : 'pointer-events-none translate-y-4 scale-[1.06] opacity-0'
+        }`}
+      >
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-bold uppercase tracking-label text-swiss-accent">
+            {project.title} — Case study
+          </span>
+          <span className="text-xs font-bold uppercase tracking-label text-white/50">
+            Role — {project.role}
+          </span>
+        </div>
+
+        <p className="mt-6 max-w-lg text-sm leading-relaxed text-white/75">
+          {project.description}
+        </p>
+
+        <ul className="mt-6 grid gap-x-8 gap-y-2 overflow-y-auto sm:grid-cols-2">
+          {project.points.map((point) => (
+            <li
+              key={point}
+              className="flex items-start gap-3 text-xs font-bold uppercase tracking-wide text-white/85"
+            >
+              <span
+                className="mt-[5px] size-1.5 shrink-0 bg-swiss-accent"
+                aria-hidden="true"
+              />
+              {point}
+            </li>
+          ))}
+        </ul>
+
+        <ul className="mt-auto flex flex-wrap gap-x-6 gap-y-2 pt-6 text-xs font-bold uppercase tracking-label">
+          {project.tags.map((tag, i) => (
+            <li key={tag} className={i === 0 ? '' : 'text-white/50'}>
+              {tag}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
   )
 }
 
 export default function Work() {
   return (
     <section id="work" aria-label="Selected work" className="scroll-mt-[72px]">
-      <SectionHeader index="01" title="Selected work" meta="FastAPI · React · AI / Two builds" />
+      <SectionHeader index="01" title="Selected work" meta="FastAPI · React · AI / Case studies" />
       <div className="mx-auto max-w-[1400px] px-6 py-16 lg:py-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-          {projects.map((p, i) => (
-            <ProjectCard key={p.title} project={p} index={i} />
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
+        <p className="mt-8 text-xs font-bold uppercase tracking-label text-black/50">
+          Hover a card for the full case study
+        </p>
+        <p className="sr-only">
+          Each project card reveals its full case study description,
+          responsibilities, and tech stack on hover or keyboard focus.
+        </p>
       </div>
     </section>
   )
