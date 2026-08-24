@@ -49,6 +49,46 @@ const projects = [
   },
 ]
 
+const TONES = {
+  dark: { body: 'text-white/75', point: 'text-white/85' },
+  light: { body: 'text-black/70', point: 'text-black/80' },
+}
+
+function CaseStudy({ project, tone = 'dark' }) {
+  const t = TONES[tone]
+  return (
+    <>
+      <div className="flex items-center justify-between gap-4">
+        <span className="text-xs font-bold uppercase tracking-label text-swiss-accent">
+          {project.title} — Case study
+        </span>
+        <span className={`text-right text-xs font-bold uppercase tracking-label ${t.point}`}>
+          Role — {project.role}
+        </span>
+      </div>
+
+      <p className={`mt-5 max-w-lg text-sm leading-relaxed ${t.body}`}>
+        {project.description}
+      </p>
+
+      <ul className="mt-6 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+        {project.points.map((point) => (
+          <li
+            key={point}
+            className={`flex items-start gap-3 text-xs font-bold uppercase tracking-wide ${t.point}`}
+          >
+            <span
+              className="mt-[5px] size-1.5 shrink-0 bg-swiss-accent"
+              aria-hidden="true"
+            />
+            {point}
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+}
+
 function ProjectCard({ project, index }) {
   // Hover, keyboard focus, and touch-tap all route through one flag
   const [engaged, setEngaged] = useState(false)
@@ -63,31 +103,31 @@ function ProjectCard({ project, index }) {
         if (!e.currentTarget.contains(e.relatedTarget)) setEngaged(false)
       }}
       className={`swiss-focus relative flex cursor-default flex-col overflow-hidden border-4 border-swiss-fg p-8 transition-all duration-200 ease-out sm:p-10 ${
-        engaged ? '-translate-y-1 bg-swiss-fg text-white' : project.base
-      } ${project.span}`}
+        engaged ? 'lg:-translate-y-1 lg:bg-swiss-fg lg:text-white' : ''
+      } ${project.base} ${project.span}`}
     >
       {/* hover parallax layers — each zooms at a different rate */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div
           className={`swiss-grid-pattern absolute -right-10 -top-10 size-44 border-4 border-swiss-fg/10 transition-transform duration-200 ease-out ${
-            engaged ? 'scale-125' : 'scale-100'
+            engaged ? 'lg:scale-125' : 'scale-100'
           }`}
         />
         <div
           className={`absolute -bottom-14 -left-14 size-52 rounded-full border-[6px] border-swiss-accent/25 transition-transform duration-200 ease-out ${
-            engaged ? 'scale-110' : 'scale-100'
+            engaged ? 'lg:scale-110' : 'scale-100'
           }`}
         />
         <div
           className={`absolute right-[30%] top-[18%] size-14 bg-swiss-accent/20 transition-transform duration-200 ease-out ${
-            engaged ? 'scale-150' : 'scale-100'
+            engaged ? 'lg:scale-150' : 'scale-100'
           }`}
         />
       </div>
 
       <div
         className={`relative z-10 flex h-full flex-col transition-transform duration-200 ease-out ${
-          engaged ? 'scale-[1.02]' : 'scale-100'
+          engaged ? 'lg:scale-[1.02]' : 'scale-100'
         }`}
       >
         <div className="flex w-full items-start justify-between">
@@ -111,43 +151,16 @@ function ProjectCard({ project, index }) {
         </p>
       </div>
 
-      {/* case-study overlay — arrives like the showcase zoom, settling to rest */}
+      {/* case-study overlay (desktop) — arrives like the showcase zoom */}
       <div
         aria-hidden={!engaged}
-        className={`absolute inset-0 z-20 flex flex-col border-t-0 bg-swiss-fg p-8 text-white transition-all duration-200 ease-out sm:p-10 ${
+        className={`absolute inset-0 z-20 hidden flex-col overflow-y-auto bg-swiss-fg p-10 text-white transition-all duration-200 ease-out lg:flex ${
           engaged
             ? 'translate-y-0 scale-100 opacity-100'
             : 'pointer-events-none translate-y-4 scale-[1.06] opacity-0'
         }`}
       >
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-bold uppercase tracking-label text-swiss-accent">
-            {project.title} — Case study
-          </span>
-          <span className="text-xs font-bold uppercase tracking-label text-white/50">
-            Role — {project.role}
-          </span>
-        </div>
-
-        <p className="mt-6 max-w-lg text-sm leading-relaxed text-white/75">
-          {project.description}
-        </p>
-
-        <ul className="mt-6 grid gap-x-8 gap-y-2 overflow-y-auto sm:grid-cols-2">
-          {project.points.map((point) => (
-            <li
-              key={point}
-              className="flex items-start gap-3 text-xs font-bold uppercase tracking-wide text-white/85"
-            >
-              <span
-                className="mt-[5px] size-1.5 shrink-0 bg-swiss-accent"
-                aria-hidden="true"
-              />
-              {point}
-            </li>
-          ))}
-        </ul>
-
+        <CaseStudy project={project} tone="dark" />
         <ul className="mt-auto flex flex-wrap gap-x-6 gap-y-2 pt-6 text-xs font-bold uppercase tracking-label">
           {project.tags.map((tag, i) => (
             <li key={tag} className={i === 0 ? '' : 'text-white/50'}>
@@ -155,6 +168,11 @@ function ProjectCard({ project, index }) {
             </li>
           ))}
         </ul>
+      </div>
+
+      {/* details in flow (mobile / touch) — no hover required */}
+      <div className="relative z-10 mt-6 border-t-2 border-swiss-fg/15 pt-6 lg:hidden">
+        <CaseStudy project={project} tone="light" />
       </div>
     </article>
   )
@@ -170,7 +188,7 @@ export default function Work() {
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
-        <p className="mt-8 text-xs font-bold uppercase tracking-label text-black/50">
+        <p className="mt-8 hidden text-xs font-bold uppercase tracking-label text-black/50 lg:block">
           Hover a card for the full case study
         </p>
         <p className="sr-only">
